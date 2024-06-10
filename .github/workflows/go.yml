@@ -12,6 +12,10 @@ jobs:
     runs-on: ubuntu-latest
     container: golang:1.22
     steps:
+      - name: github.ref
+        run: |
+          echo ${{ github.ref }}
+      
       - uses: actions/checkout@v4
 
       - name: Run Unit Tests
@@ -21,8 +25,7 @@ jobs:
         run: |
           go vet ./...
 
-      - name: github.ref
-        run: echo ${{ github.ref }}
+      
 
   deploy:
     name: Push Docker image to Docker Hub
